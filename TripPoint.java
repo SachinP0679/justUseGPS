@@ -179,26 +179,52 @@ public class TripPoint {
 		movingTrip = new ArrayList<TripPoint>();
 		int stops = 0;
 		double zeroPointFive = 0.5;
+		ArrayList <TripPoint> group = new ArrayList<TripPoint>();
 		for(int i = 0;i<trip.size();i++)
 		{
-			if(i-1>0&&i+1<trip.size())
+			if(i>0)
 			{
-				double d1 = haversineDistance(trip.get(i-1),trip.get(i));
-				double d2 = haversineDistance(trip.get(i),trip.get(i+1));
-				double d3 = haversineDistance(trip.get(i-1),trip.get(i+1));
-				if(d1 <=zeroPointFive&&d2<=zeroPointFive&&d3<=zeroPointFive)
+				for(int j = 0; j<group.size();j++)
 				{
-					stops++;
+					if(haversineDistance(trip.get(i),group.get(j))<=zeroPointFive)
+					{
+						group.add(trip.get(i));
+						break;
+					}
 				}
-				else
+				if(!group.contains(trip.get(i)))
 				{
-					movingTrip.add(trip.get(i));
+					if(group.size()<3)
+					{
+						movingTrip.addAll(group);
+						group.clear();
+					}
+					else
+					{
+						stops += group.size();
+						group.clear();
+					}
+					group.add(trip.get(i));
 				}
+				
 			}
 			else
 			{
-				movingTrip.add(trip.get(i));
+				group.add(trip.get(i));
 			}
+			System.out.print(stops+" ");
+			System.out.print(group.size()+" ");
+			System.out.println(movingTrip.size());
+		}
+		if(group.size()<3)
+		{
+			movingTrip.addAll(group);
+			group.clear();
+		}
+		else
+		{
+			stops += group.size();
+			group.clear();
 		}
 		return stops;
 	}
