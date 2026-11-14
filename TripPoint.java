@@ -230,7 +230,32 @@ public class TripPoint {
 	}
 	public static double movingTime()
 	{
-		return 0.0;
+		int minutes = 0;
+		minutes += movingTrip.get(0).getTime();
+		for(int i = 0;i<trip.size();i++)
+		{
+			if(i>0)
+			{
+				if(movingTrip.contains(trip.get(i)))
+				{
+					int minTime = trip.get(i).getTime()-trip.get(i-1).getTime();
+					System.out.print(minTime+" ");
+					minutes+=minTime;
+					System.out.println(minutes);
+				}
+				else
+				{
+					continue;
+				}
+			}
+			else
+			{
+				continue;
+			}
+		}
+		System.out.println(minutes);
+		double hours = minutes / 60.0;
+		return hours;
 	}
 	public static double stoppedTime()
 	{
