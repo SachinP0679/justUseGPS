@@ -212,9 +212,6 @@ public class TripPoint {
 			{
 				group.add(trip.get(i));
 			}
-			System.out.print(stops+" ");
-			System.out.print(group.size()+" ");
-			System.out.println(movingTrip.size());
 		}
 		if(group.size()<3)
 		{
@@ -239,9 +236,7 @@ public class TripPoint {
 				if(movingTrip.contains(trip.get(i)))
 				{
 					int minTime = trip.get(i).getTime()-trip.get(i-1).getTime();
-					System.out.print(minTime+" ");
 					minutes+=minTime;
-					System.out.println(minutes);
 				}
 				else
 				{
@@ -259,11 +254,19 @@ public class TripPoint {
 	}
 	public static double stoppedTime()
 	{
-		return 0.0;
+		return totalTime()-movingTime();
 	}
 	public static double avgMovingSpeed()
 	{
-		return 0.0;
+		double movement = 0.0;
+		for(int i=0;i<movingTrip.size();i++)
+		{
+			if(i+1<movingTrip.size())
+			{
+				movement += haversineDistance(movingTrip.get(i), movingTrip.get(i+1));
+			}
+		}
+		return movement/movingTime();
 	}
 
 }
