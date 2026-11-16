@@ -270,6 +270,10 @@ public class TripPoint {
 		double hours = minutes / 60.0;
 		return hours;
 	}
+	/**
+	 * find the difference of total time and moving time and returns it
+	 * @return double totalTime()-movingTime()
+	 */
 	public static double stoppedTime()
 	{
 		return totalTime()-movingTime();
