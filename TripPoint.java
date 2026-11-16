@@ -147,6 +147,12 @@ public class TripPoint {
 		// close scanner
 		fileScanner.close();
 	}
+	/**
+	 * Finds the number of stops for the first heuristic while also initializing and filling in movingTrip arraylist
+	 * @return the number of stop points according to the first heuristic.
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static int h1StopDetection() throws FileNotFoundException, IOException
 	{
 		readFile("triplog.csv");
