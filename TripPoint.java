@@ -237,6 +237,12 @@ public class TripPoint {
 		}
 		return stops;
 	}
+	/**
+	 * calculates the amount of time the trip is moving by checking if a point is in 
+	 * both trip and movingTrip. If so, find the difference in time for the tripPoint and 
+	 * the tripPoint before it and add it to variable minutes. Divide by 60.0 and return minutes.
+	 * @return double minutes
+	 */
 	public static double movingTime()
 	{
 		int minutes = 0;
