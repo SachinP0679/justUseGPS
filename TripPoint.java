@@ -46,7 +46,7 @@ public class TripPoint {
 	public static ArrayList<TripPoint> getTrip() {
 		return new ArrayList<>(trip);
 	}
-	
+	// returns a copy of movingTrip ArrayList
 	public static ArrayList<TripPoint> getMovingTrip() {
 		return new ArrayList<>(movingTrip);
 	}
@@ -278,6 +278,11 @@ public class TripPoint {
 	{
 		return totalTime()-movingTime();
 	}
+	/**
+	 * gets the haversine difference of each member of movingTrip and adds it to 
+	 * the double variable movement. Returns the quoteint of movement and movingTime()
+	 * @return the quoteint of movement and movingTime()
+	 */
 	public static double avgMovingSpeed()
 	{
 		double movement = 0.0;
